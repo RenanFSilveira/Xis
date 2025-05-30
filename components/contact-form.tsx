@@ -1,8 +1,8 @@
 "use client"
 
 import type React from "react"
+
 import { useState } from "react"
-import { supabase } from "../lib/supabaseClient.js" // Importar o cliente Supabase
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -30,26 +30,11 @@ export default function ContactForm() {
     setError("")
 
     try {
-      // Enviar dados para o Supabase
-      const { data, error: supabaseError } = await supabase
-        .from("form_submissions") // Nome exato da tabela
-        .insert([
-          {
-            // CORREÇÃO: Mapear estado para os nomes exatos das colunas no Supabase
-            name: formData.name, 
-            email: formData.email,
-            phone: formData.phone,
-            message: formData.message,
-          },
-        ])
-        .select() // Opcional: retornar os dados inseridos
+      // Simulando envio do formulário
+      await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      if (supabaseError) {
-        // Lançar erro se o Supabase retornar um erro
-        throw supabaseError
-      }
-
-      console.log("Dados enviados com sucesso para o Supabase:", data)
+      // Aqui você implementaria a lógica real de envio do formulário
+      console.log("Dados enviados:", formData)
 
       // Resetar formulário e mostrar mensagem de sucesso
       setFormData({
@@ -59,17 +44,8 @@ export default function ContactForm() {
         message: "",
       })
       setIsSubmitted(true)
-
-    } catch (err: any) { // Capturar qualquer erro
-      // Log mais detalhado do erro
-      console.error("Erro detalhado ao enviar para o Supabase:", JSON.stringify(err, null, 2)); 
-      console.error("Objeto de erro original:", err);
-
-      // Tenta pegar a mensagem de erro de forma mais robusta
-      const errorMessage = err?.message || (typeof err === 'string' ? err : "Erro desconhecido. Verifique o console para detalhes.");
-      setError(
-        `Ocorreu um erro ao enviar o formulário: ${errorMessage}`
-      )
+    } catch (err) {
+      setError("Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.")
     } finally {
       setIsSubmitting(false)
     }
@@ -101,11 +77,13 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {error && <div className="bg-red-50 border border-red-200 text-red-600 rounded-md p-3 text-sm">{error}</div>}
+    <form onSubmit={handleSubmit} className="space-y-4 flex flex-col md:items-start items-center">
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-600 rounded-md p-3 text-sm w-full">{error}</div>
+      )}
 
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1 md:text-left text-center">
+      <div className="w-full text-center md:text-left">
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
           Nome completo *
         </label>
         <input
@@ -120,8 +98,8 @@ export default function ContactForm() {
         />
       </div>
 
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1 md:text-left text-center">
+      <div className="w-full text-center md:text-left">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
           E-mail *
         </label>
         <input
@@ -136,8 +114,8 @@ export default function ContactForm() {
         />
       </div>
 
-      <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1 md:text-left text-center">
+      <div className="w-full text-center md:text-left">
+        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
           Telefone *
         </label>
         <input
@@ -152,8 +130,8 @@ export default function ContactForm() {
         />
       </div>
 
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1 md:text-left text-center">
+      <div className="w-full text-center md:text-left">
+        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
           Mensagem (opcional)
         </label>
         <textarea
@@ -175,8 +153,7 @@ export default function ContactForm() {
         {isSubmitting ? "Enviando..." : "Enviar mensagem"}
       </button>
 
-      <p className="text-xs text-gray-500 mt-2 md:text-left text-center">* Campos obrigatórios</p>
+      <p className="text-xs text-gray-500 mt-2 text-center md:text-left">* Campos obrigatórios</p>
     </form>
   )
 }
-

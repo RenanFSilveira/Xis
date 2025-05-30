@@ -6,49 +6,55 @@ import Testimonial from "@/components/testimonial"
 import CTA from "@/components/cta"
 
 export default function Home() {
-  // Dados dos módulos do curso
+  // Dados dos módulos do curso atualizados
   const modules = [
     {
       id: 1,
-      title: "Fundamentos da Prótese",
-      description: "Conceitos básicos, materiais e técnicas iniciais.",
+      title: "Módulo I",
+      topics: [
+        "Introdução à Prótese Odontológica",
+        "Oclusão",
+        "Anatomia e Morfologia Dentária",
+        "Materiais Odontológicos",
+      ],
       icon: "🔍",
     },
     {
       id: 2,
-      title: "Próteses Removíveis",
-      description: "Criação de próteses totais e parciais.",
+      title: "Módulo II",
+      topics: ["Ortodontia I", "Prótese Total Removível I", "Prótese Fixa I", "Prótese Parcial Removível"],
       icon: "🦷",
     },
     {
       id: 3,
-      title: "Próteses Fixas",
-      description: "Implantes, coroas e pontes.",
+      title: "Módulo III",
+      topics: ["Ortodontia II", "Prótese Total Removível II", "Prótese Fixa II", "Prótese Dental Digital I"],
       icon: "🔧",
     },
     {
       id: 4,
-      title: "Tecnologia CAD/CAM",
-      description: "Design e fabricação digital.",
+      title: "Módulo IV",
+      topics: ["Prótese Fixa III", "Prótese Dental Digital II", "Função e Estética", "Administração de Laboratório"],
       icon: "💻",
     },
   ]
 
-  // Dados dos depoimentos
+  // Dados dos depoimentos atualizados
   const testimonials = [
     {
       id: 1,
-      name: "Carlos Silva",
-      role: "Protético Dental",
+      name: "Dr. Carlos Silva",
+      role: "Dentista",
       content:
-        "O curso da Xis transformou minha carreira. A metodologia prática e o conhecimento da Márcia são incomparáveis.",
+        "A qualidade dos trabalhos que recebo da Xis é excepcional. A formação técnica dos profissionais é notável e faz toda a diferença no resultado final.",
       avatar: "/placeholder.svg?height=80&width=80",
     },
     {
       id: 2,
       name: "Ana Oliveira",
-      role: "Estudante de Odontologia",
-      content: "Mesmo sem experiência prévia, consegui aprender técnicas avançadas e já estou trabalhando na área.",
+      role: "Protética Dental",
+      content:
+        "A metodologia da Xis me deu uma base sólida para trabalhar com confiança. Hoje tenho meu próprio laboratório e atendo diversos consultórios.",
       avatar: "/placeholder.svg?height=80&width=80",
     },
   ]
@@ -67,14 +73,14 @@ export default function Home() {
       </a>
 
       {/* Header */}
-      <header className="bg-white py-4 px-6 shadow-sm sticky top-0 z-40">
+      <header className="bg-white py-3 px-6 shadow-sm sticky top-0 z-40">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="w-40 h-auto relative">
+          <div className="w-32 h-auto relative">
             <Image
               src="/images/logo.png"
               alt="Xis - Próteses Odontológicas"
-              width={160}
-              height={80}
+              width={128}
+              height={64}
               priority
               className="object-contain"
             />
@@ -89,7 +95,7 @@ export default function Home() {
             <a href="#depoimentos" className="text-gray-700 hover:text-emerald-600 transition-colors">
               Depoimentos
             </a>
-            <a href="#contato" className="text-gray-700 hover:text-emerald-600 transition-colors">
+            <a href="#inscreva-se" className="text-gray-700 hover:text-emerald-600 transition-colors">
               Contato
             </a>
           </nav>
@@ -107,19 +113,18 @@ export default function Home() {
         <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-              Torne-se um Especialista em Próteses Odontológicas
+              Faça este curso e conquiste sua independência financeira
             </h1>
             <p className="text-lg text-gray-600 mb-8">
-              Curso profissionalizante com certificação e metodologia exclusiva desenvolvida por
-              <span className="font-semibold text-emerald-700"> Márcia Sales</span>, especialista com mais de 35 anos de
-              experiência.
+              Curso profissionalizante para iniciantes, não requer experiência na área. Alta remuneração, rápida
+              formação e mercado com demanda real.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#inscreva-se"
                 className="bg-orange-500 text-white px-8 py-3 rounded-md text-center hover:bg-orange-600 transition-colors shadow-md"
               >
-                Garanta sua vaga
+                Conheça a profissão
               </a>
               <a
                 href="#modulos"
@@ -144,10 +149,17 @@ export default function Home() {
       <section id="sobre" className="py-20 px-6 bg-white">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Por que escolher o curso da Xis?</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              Nosso curso foi desenvolvido para formar profissionais de excelência, com foco em qualidade máxima e
-              técnicas modernas.
+            <h2 className="text-3xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-3">
+              Por que escolher a
+              <div className="relative w-16 h-8">
+                <Image src="/images/logo.png" alt="Xis" fill className="object-contain" />
+              </div>
+              ?
+            </h2>
+            <p className="text-gray-600 max-w-4xl mx-auto">
+              Nosso curso foi desenvolvido para formar profissionais de excelência, com foco em qualidade,
+              responsabilidade e ética profissional dentro de técnicas atualizadas, maximização de aulas práticas e todo
+              o conteúdo teórico que a formação demanda.
             </p>
           </div>
 
@@ -183,8 +195,8 @@ export default function Home() {
 
       {/* CTA Intermediário */}
       <CTA
-        title="Transforme sua carreira com conhecimento especializado"
-        description="Inscreva-se agora e comece sua jornada na área de próteses odontológicas."
+        title="Diga Xis e comece uma nova carreira"
+        description="Inscreva-se agora e comece sua jornada na área de Prótese Odontológica."
         buttonText="Quero me inscrever"
         buttonLink="#inscreva-se"
       />
@@ -196,13 +208,13 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Estrutura do Curso</h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
               Nosso curso é dividido em módulos independentes, permitindo que você avance em seu próprio ritmo e comece
-              a atuar profissionalmente após cada etapa.
+              a atuar profissionalmente já após o primeiro módulo.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {modules.map((module) => (
-              <ModuleCard key={module.id} title={module.title} description={module.description} icon={module.icon} />
+              <ModuleCard key={module.id} title={module.title} topics={module.topics} icon={module.icon} />
             ))}
           </div>
         </div>
@@ -212,10 +224,8 @@ export default function Home() {
       <section id="depoimentos" className="py-20 px-6 bg-white">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">O que dizem nossos alunos</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              Conheça as histórias de sucesso de quem já transformou sua carreira com nosso curso.
-            </p>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">O que dizem os profissionais da área</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">Conheça a opinião de quem já está no mercado!</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -252,7 +262,7 @@ export default function Home() {
                   Preencha o formulário ao lado para receber mais informações sobre o curso, valores e datas de início
                   das próximas turmas.
                 </p>
-                <div className="space-y-4">
+                <div className="space-y-4 flex flex-col items-center md:items-start">
                   <div className="flex items-center">
                     <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center mr-4">
                       <span className="text-xl">📍</span>
