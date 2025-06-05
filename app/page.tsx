@@ -4,6 +4,7 @@ import ContactForm from "@/components/contact-form"
 import ModuleCard from "@/components/module-card"
 import Testimonial from "@/components/testimonial"
 import CTA from "@/components/cta"
+import FAQ from "@/components/faq"
 
 export default function Home() {
   // Dados dos módulos do curso atualizados
@@ -18,24 +19,32 @@ export default function Home() {
         "Materiais Odontológicos",
       ],
       icon: "🔍",
+      duration: "[Inserir Carga Horária Módulo I]",
+      prerequisites: "Ensino Médio completo",
     },
     {
       id: 2,
       title: "Módulo II",
       topics: ["Ortodontia I", "Prótese Total Removível I", "Prótese Fixa I", "Prótese Parcial Removível"],
       icon: "🦷",
+      duration: "[Inserir Carga Horária Módulo II]",
+      prerequisites: "Módulo I concluído",
     },
     {
       id: 3,
       title: "Módulo III",
       topics: ["Ortodontia II", "Prótese Total Removível II", "Prótese Fixa II", "Prótese Dental Digital I"],
       icon: "🔧",
+      duration: "[Inserir Carga Horária Módulo III]",
+      prerequisites: "Módulo II concluído",
     },
     {
       id: 4,
       title: "Módulo IV",
       topics: ["Prótese Fixa III", "Prótese Dental Digital II", "Função e Estética", "Administração de Laboratório"],
       icon: "💻",
+      duration: "[Inserir Carga Horária Módulo IV]",
+      prerequisites: "Módulo III concluído",
     },
   ]
 
@@ -95,6 +104,9 @@ export default function Home() {
             <a href="#depoimentos" className="text-gray-700 hover:text-emerald-600 transition-colors">
               Depoimentos
             </a>
+            <a href="#faq" className="text-gray-700 hover:text-emerald-600 transition-colors">
+              FAQ
+            </a>
             <a href="#inscreva-se" className="text-gray-700 hover:text-emerald-600 transition-colors">
               Contato
             </a>
@@ -115,10 +127,33 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
               Faça este curso e conquiste sua independência financeira
             </h1>
-            <p className="text-lg text-gray-600 mb-8">
-              Curso profissionalizante para iniciantes, não requer experiência na área. Alta remuneração, rápida
-              formação e mercado com demanda real.
+            <p className="text-lg text-gray-600 mb-6">
+              Curso <strong>presencial</strong> profissionalizante para iniciantes, não requer experiência na área. Alta
+              remuneração, rápida formação e mercado com demanda real.
             </p>
+
+            {/* Mercado Aquecido */}
+            <div className="bg-emerald-100 border-l-4 border-emerald-500 p-4 mb-6 rounded-r-lg">
+              <p className="text-emerald-800 font-semibold">
+                <span className="text-emerald-600">🔥 Mercado Aquecido:</span> Milhares de vagas para Técnicos em
+                Prótese Dentária estão abertas neste momento em todo o Brasil. Uma profissão com alta demanda e
+                excelente remuneração esperando por você!
+              </p>
+            </div>
+
+            {/* Para quem é este curso */}
+            <div className="bg-white border border-gray-200 p-6 rounded-lg mb-8 shadow-sm">
+              <h3 className="text-xl font-bold text-gray-800 mb-3">Para quem é este curso?</h3>
+              <p className="text-gray-600 mb-3">
+                Ideal para você que busca uma nova carreira promissora e rentável, mesmo sem experiência prévia na área
+                odontológica.
+              </p>
+              <p className="text-gray-800">
+                <strong>Pré-requisitos:</strong> Ensino Médio completo e muita vontade de aprender uma profissão com
+                alta demanda.
+              </p>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#inscreva-se"
@@ -156,11 +191,31 @@ export default function Home() {
               </div>
               ?
             </h2>
-            <p className="text-gray-600 max-w-4xl mx-auto">
-              Nosso curso foi desenvolvido para formar profissionais de excelência, com foco em qualidade,
-              responsabilidade e ética profissional dentro de técnicas atualizadas, maximização de aulas práticas e todo
-              o conteúdo teórico que a formação demanda.
+            <p className="text-gray-600 max-w-4xl mx-auto mb-8">
+              Nossa metodologia exclusiva foca na <strong>prática intensiva (70% do curso)</strong>, utilizando
+              equipamentos de ponta como <strong>impressoras 3D, scanners intraorais e fresadoras CAD/CAM</strong>,
+              preparando você para os desafios reais do mercado.
             </p>
+
+            {/* Certificado Destaque */}
+            <div className="inline-flex items-center bg-emerald-50 border border-emerald-200 px-6 py-3 rounded-full">
+              <svg
+                className="w-6 h-6 text-emerald-600 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="text-emerald-800 font-semibold">
+                Receba certificados por módulo e um certificado final de{" "}
+                <strong>Especialista em Próteses Odontológicas</strong> reconhecido no mercado
+              </span>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -186,8 +241,53 @@ export default function Home() {
               <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">💻</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Tecnologia CAD/CAM</h3>
-              <p className="text-gray-600">Acesso às técnicas mais modernas, incluindo design e fabricação digital.</p>
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Tecnologia de Ponta e Muita Prática</h3>
+              <p className="text-gray-600">
+                Domine as técnicas mais modernas, incluindo design e fabricação digital (CAD/CAM), com acesso a
+                laboratórios equipados e aulas mão na massa desde o início.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Diferenciais Específicos */}
+      <section className="py-16 px-6 bg-gray-50">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-gray-800 text-center mb-12">
+            Por que a Xis é a escolha certa para você?
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <div className="flex items-start mb-4">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="text-2xl">🔄</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">Para quem busca Transição de Carreira</h3>
+                  <p className="text-gray-600">
+                    Oferecemos uma formação completa do zero, com forte base prática e suporte para sua inserção rápida
+                    no mercado, mesmo sem experiência anterior. Transforme sua vida profissional em uma área rentável e
+                    com propósito.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <div className="flex items-start mb-4">
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="text-2xl">🦷</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">Para quem sonha com Odontologia</h3>
+                  <p className="text-gray-600">
+                    Este curso é um excelente primeiro passo! Adquira conhecimento técnico aprofundado sobre próteses,
+                    ganhe experiência prática em laboratório e tenha um grande diferencial competitivo ao ingressar na
+                    faculdade de Odontologia ou atuar em conjunto com dentistas.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -206,16 +306,42 @@ export default function Home() {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Estrutura do Curso</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              Nosso curso é dividido em módulos independentes, permitindo que você avance em seu próprio ritmo e comece
-              a atuar profissionalmente já após o primeiro módulo.
+            <p className="text-gray-600 max-w-3xl mx-auto mb-8">
+              Nosso curso <strong>presencial</strong> é dividido em módulos independentes, permitindo que você avance em
+              seu próprio ritmo e comece a atuar profissionalmente já após o primeiro módulo.
             </p>
+
+            {/* Destaque Prática */}
+            <div className="bg-emerald-100 border border-emerald-200 p-6 rounded-lg max-w-2xl mx-auto">
+              <h3 className="text-xl font-bold text-emerald-800 mb-2">🔬 Foco na Prática</h3>
+              <p className="text-emerald-700">
+                Todos os módulos possuem extensa carga horária prática em laboratório, utilizando os equipamentos e
+                materiais mais modernos do mercado.
+              </p>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
             {modules.map((module) => (
-              <ModuleCard key={module.id} title={module.title} topics={module.topics} icon={module.icon} />
+              <ModuleCard
+                key={module.id}
+                title={module.title}
+                topics={module.topics}
+                icon={module.icon}
+                duration={module.duration}
+                prerequisites={module.prerequisites}
+              />
             ))}
+          </div>
+
+          {/* Métodos de Avaliação */}
+          <div className="bg-white p-8 rounded-lg shadow-md">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">Como serei avaliado?</h3>
+            <p className="text-gray-600">
+              Nossa avaliação é contínua e prática. Você será avaliado através de trabalhos práticos individuais e em
+              grupo realizados em laboratório, provas teóricas pontuais e um projeto final integrador ao concluir todos
+              os módulos, garantindo que você realmente domine as competências necessárias.
+            </p>
           </div>
         </div>
       </section>
@@ -242,14 +368,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <FAQ />
+
       {/* CTA Final */}
-      <CTA
-        title="Garanta sua vaga no próximo módulo"
-        description="As inscrições estão abertas. Não perca esta oportunidade!"
-        buttonText="Inscrever-se agora"
-        buttonLink="#inscreva-se"
-        highlight={true}
-      />
+      <section className="py-16 px-6 bg-emerald-600 text-white">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">Garanta sua vaga na próxima turma!</h2>
+          <div className="bg-emerald-500 p-6 rounded-lg max-w-md mx-auto mb-8">
+            <p className="text-xl font-semibold mb-2">
+              <strong>Início:</strong> 04/08/2025
+            </p>
+            <p className="text-xl font-semibold">
+              <strong>Investimento:</strong> 24x R$800
+            </p>
+          </div>
+          <p className="text-emerald-50 max-w-2xl mx-auto mb-8">
+            As inscrições estão abertas por tempo limitado. Não perca esta oportunidade!
+          </p>
+          <a
+            href="#inscreva-se"
+            className="inline-block px-8 py-3 rounded-md shadow-md bg-orange-500 text-white hover:bg-orange-600 transition-colors"
+          >
+            Inscrever-se agora
+          </a>
+        </div>
+      </section>
 
       {/* Formulário de Contato */}
       <section id="inscreva-se" className="py-20 px-6 bg-gray-50">
@@ -267,7 +411,7 @@ export default function Home() {
                     <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center mr-4">
                       <span className="text-xl">📍</span>
                     </div>
-                    <span>Vitória, Espírito Santo</span>
+                    <span>Av. Nossa Senhora da Penha - Vitória/ES</span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center mr-4">
@@ -329,6 +473,11 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
+                  <a href="#faq" className="text-gray-300 hover:text-white transition-colors">
+                    FAQ
+                  </a>
+                </li>
+                <li>
                   <a href="#inscreva-se" className="text-gray-300 hover:text-white transition-colors">
                     Contato
                   </a>
@@ -373,7 +522,6 @@ export default function Home() {
           </div>
           <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
             <p>© {new Date().getFullYear()} Xis - Próteses Odontológicas. Todos os direitos reservados.</p>
-            {/* Aqui você pode substituir a fonte padrão por uma fonte customizada */}
             <p className="mt-2 text-sm">Desenvolvido com ❤️ em Vitória/ES</p>
           </div>
         </div>
