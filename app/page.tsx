@@ -5,6 +5,7 @@ import ModuleCard from "@/components/module-card"
 import Testimonial from "@/components/testimonial"
 import CTA from "@/components/cta"
 import FAQ from "@/components/faq"
+import ImageCarousel from "@/components/image-carousel"
 
 export default function Home() {
   // Dados dos módulos do curso atualizados
@@ -169,14 +170,17 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
-            <Image
-              src="/placeholder.svg?height=400&width=600"
-              alt="Profissionais em prótese odontológica em atividade"
-              fill
-              className="object-cover"
-            />
-          </div>
+          {/* VSL Section - Temporarily replaced with image carousel */}
+          {/* 
+            Future VSL implementation will go here:
+            <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
+              <video controls className="w-full h-full object-cover">
+                <source src="/path-to-vsl-video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          */}
+          <ImageCarousel />
         </div>
       </section>
 
