@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Aqui você pode adicionar a definição de @font-face para fontes customizadas */
+/* 
+@font-face {
+  font-family: 'SuaFonte';
+  src: url('/fonts/sua-fonte.woff2') format('woff2'),
+       url('/fonts/sua-fonte.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* Você também pode definir estilos globais aqui */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Personalize a barra de rolagem para um visual mais moderno */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #10b981;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}
