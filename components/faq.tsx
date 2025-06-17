@@ -19,11 +19,6 @@ const faqData: FAQItem[] = [
     answer: "Não! Nosso curso foi desenhado para formar profissionais do zero.",
   },
   {
-    question: "Quais os métodos de avaliação?",
-    answer:
-      "Nossa avaliação é contínua e prática. Você será avaliado através de trabalhos práticos individuais e em grupo realizados em laboratório, provas teóricas pontuais e um projeto final integrador ao concluir todos os módulos, garantindo que você realmente domine as competências necessárias.",
-  },
-  {
     question: "O curso oferece certificado?",
     answer:
       "Sim! Você recebe um certificado de conclusão para cada módulo finalizado e um certificado completo ao final do curso.",

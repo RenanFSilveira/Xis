@@ -7,7 +7,10 @@ export const metadata: Metadata = {
   description:
     "Curso profissionalizante em próteses odontológicas com certificação e metodologia exclusiva desenvolvida por Márcia Sales, especialista com mais de 35 anos de experiência.",
   keywords: "próteses odontológicas, curso profissionalizante, Vitória, ES, Márcia Sales, CAD/CAM, prótese dentária",
-    generator: 'v0.dev'
+    generator: 'v0.dev',
+    icons: {
+      icon: '/images/logo.png', // Caminho para a sua logo.png na pasta public/images
+  },
 }
 
 export default function RootLayout({

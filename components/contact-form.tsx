@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import { supabase } from "../lib/supabaseClient.js"
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -30,11 +31,26 @@ export default function ContactForm() {
     setError("")
 
     try {
-      // Simulando envio do formulário
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      // Enviar dados para o Supabase
+      const { data, error: supabaseError } = await supabase
+        .from("form_submissions") // Nome exato da tabela
+        .insert([
+          {
+            // Mapear estado para os nomes exatos das colunas no Supabase
+            name: formData.name, 
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+          },
+        ])
+        .select() // Opcional: retornar os dados inseridos
 
-      // Aqui você implementaria a lógica real de envio do formulário
-      console.log("Dados enviados:", formData)
+      if (supabaseError) {
+        // Lançar erro se o Supabase retornar um erro
+        throw supabaseError
+      }
+
+      console.log("Dados enviados com sucesso para o Supabase:", data)
 
       // Resetar formulário e mostrar mensagem de sucesso
       setFormData({
@@ -44,8 +60,17 @@ export default function ContactForm() {
         message: "",
       })
       setIsSubmitted(true)
-    } catch (err) {
-      setError("Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.")
+
+    } catch (err: any) { // Capturar qualquer erro
+      // Log mais detalhado do erro
+      console.error("Erro detalhado ao enviar para o Supabase:", JSON.stringify(err, null, 2)); 
+      console.error("Objeto de erro original:", err);
+
+      // Tenta pegar a mensagem de erro de forma mais robusta
+      const errorMessage = err?.message || (typeof err === 'string' ? err : "Erro desconhecido. Verifique o console para detalhes.");
+      setError(
+        `Ocorreu um erro ao enviar o formulário: ${errorMessage}`
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -82,67 +107,69 @@ export default function ContactForm() {
         <div className="bg-red-50 border border-red-200 text-red-600 rounded-md p-3 text-sm w-full">{error}</div>
       )}
 
-      <div className="w-full text-center md:text-left">
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-          Nome completo *
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-          placeholder="Seu nome"
-        />
-      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+        <div className="w-full text-center md:text-left">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+            Nome completo *
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+            placeholder="Seu nome"
+          />
+        </div>
 
-      <div className="w-full text-center md:text-left">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-          E-mail *
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-          placeholder="seu.email@exemplo.com"
-        />
-      </div>
+        <div className="w-full text-center md:text-left">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            E-mail *
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+            placeholder="seu.email@exemplo.com"
+          />
+        </div>
 
-      <div className="w-full text-center md:text-left">
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-          Telefone *
-        </label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-          placeholder="(00) 00000-0000"
-        />
-      </div>
+        <div className="w-full text-center md:text-left">
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+            Telefone *
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+            placeholder="(00) 00000-0000"
+          />
+        </div>
 
-      <div className="w-full text-center md:text-left">
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-          Mensagem (opcional)
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          rows={4}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-          placeholder="Escreva sua mensagem aqui..."
-        />
+        <div className="w-full text-center md:text-left">
+          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+            Mensagem (opcional)
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            rows={4}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+            placeholder="Escreva sua mensagem aqui..."
+          />
+        </div>
       </div>
 
       <button
