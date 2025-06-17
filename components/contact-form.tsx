@@ -107,7 +107,7 @@ export default function ContactForm() {
         <div className="bg-red-50 border border-red-200 text-red-600 rounded-md p-3 text-sm w-full">{error}</div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+      <div className="grid grid-cols-1 gap-4 w-full">
         <div className="w-full text-center md:text-left">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
             Nome completo *
