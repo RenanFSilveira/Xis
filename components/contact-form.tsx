@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { supabase } from "../lib/supabaseClient.js"
 
@@ -16,6 +15,23 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState("")
+  const [formStarted, setFormStarted] = useState(false)
+
+  // Função para disparar o evento form_start (apenas uma vez)
+  const handleFormStart = () => {
+    if (!formStarted) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'form_start',
+        'form_name': 'contato_proteses',
+        'form_location': 'homepage',
+        'form_type': 'contact_form',
+        'timestamp': new Date().toISOString()
+      });
+      setFormStarted(true);
+      console.log('GTM Event: form_start disparado');
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -25,32 +41,64 @@ export default function ContactForm() {
     }))
   }
 
+  // Função para lidar com o foco nos campos (dispara form_start)
+  const handleInputFocus = () => {
+    handleFormStart();
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setError("")
 
+    // Disparar evento form_submit ANTES de enviar para o Supabase
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'form_submit',
+      'form_name': 'contato_proteses',
+      'form_location': 'homepage',
+      'form_type': 'contact_form',
+      'form_data': {
+        'user_name': formData.name,
+        'user_email': formData.email,
+        'user_phone': formData.phone,
+        'user_message': formData.message || 'Não informado'
+      },
+      'timestamp': new Date().toISOString()
+    });
+    console.log('GTM Event: form_submit disparado com dados:', formData);
+
     try {
       // Enviar dados para o Supabase
       const { data, error: supabaseError } = await supabase
-        .from("form_submissions") // Nome exato da tabela
+        .from("form_submissions")
         .insert([
           {
-            // Mapear estado para os nomes exatos das colunas no Supabase
             name: formData.name, 
             email: formData.email,
             phone: formData.phone,
             message: formData.message,
           },
         ])
-        .select() // Opcional: retornar os dados inseridos
+        .select()
 
       if (supabaseError) {
-        // Lançar erro se o Supabase retornar um erro
         throw supabaseError
       }
 
       console.log("Dados enviados com sucesso para o Supabase:", data)
+
+      // Disparar evento form_success após envio bem-sucedido
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'form_success',
+        'form_name': 'contato_proteses',
+        'form_location': 'homepage',
+        'form_type': 'contact_form',
+        'conversion_value': 1,
+        'timestamp': new Date().toISOString()
+      });
+      console.log('GTM Event: form_success disparado');
 
       // Resetar formulário e mostrar mensagem de sucesso
       setFormData({
@@ -60,13 +108,24 @@ export default function ContactForm() {
         message: "",
       })
       setIsSubmitted(true)
+      setFormStarted(false) // Reset para permitir novo form_start
 
-    } catch (err: any) { // Capturar qualquer erro
-      // Log mais detalhado do erro
+    } catch (err: any) {
+      // Disparar evento form_error em caso de erro
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'form_error',
+        'form_name': 'contato_proteses',
+        'form_location': 'homepage',
+        'form_type': 'contact_form',
+        'error_message': err?.message || 'Erro desconhecido',
+        'timestamp': new Date().toISOString()
+      });
+      console.log('GTM Event: form_error disparado');
+
       console.error("Erro detalhado ao enviar para o Supabase:", JSON.stringify(err, null, 2)); 
       console.error("Objeto de erro original:", err);
 
-      // Tenta pegar a mensagem de erro de forma mais robusta
       const errorMessage = err?.message || (typeof err === 'string' ? err : "Erro desconhecido. Verifique o console para detalhes.");
       setError(
         `Ocorreu um erro ao enviar o formulário: ${errorMessage}`
@@ -74,6 +133,11 @@ export default function ContactForm() {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  const handleNewMessage = () => {
+    setIsSubmitted(false);
+    setFormStarted(false); // Reset para permitir novo form_start
   }
 
   if (isSubmitted) {
@@ -94,7 +158,10 @@ export default function ContactForm() {
         <p className="text-gray-600 mb-4">
           Agradecemos seu interesse. Em breve, nossa equipe entrará em contato com você.
         </p>
-        <button onClick={() => setIsSubmitted(false)} className="text-emerald-600 underline hover:text-emerald-700">
+        <button 
+          onClick={handleNewMessage} 
+          className="text-emerald-600 underline hover:text-emerald-700"
+        >
           Enviar outra mensagem
         </button>
       </div>
@@ -118,6 +185,7 @@ export default function ContactForm() {
             name="name"
             value={formData.name}
             onChange={handleChange}
+            onFocus={handleInputFocus}
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             placeholder="Seu nome"
@@ -134,6 +202,7 @@ export default function ContactForm() {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            onFocus={handleInputFocus}
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             placeholder="seu.email@exemplo.com"
@@ -150,6 +219,7 @@ export default function ContactForm() {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
+            onFocus={handleInputFocus}
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             placeholder="(00) 00000-0000"
@@ -165,6 +235,7 @@ export default function ContactForm() {
             name="message"
             value={formData.message}
             onChange={handleChange}
+            onFocus={handleInputFocus}
             rows={4}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             placeholder="Escreva sua mensagem aqui..."
