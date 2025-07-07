@@ -4,10 +4,16 @@ import Script from "next/script"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Xis - Curso Profissionalizante em Próteses Odontológicas",
+  title: "Xis Escola de Prótese",
   description:
-    "Curso profissionalizante em próteses odontológicas com certificação e metodologia exclusiva desenvolvida por Márcia Sales, especialista com mais de 35 anos de experiência.",
-  keywords: "próteses odontológicas, curso profissionalizante, Vitória, ES, Márcia Sales, CAD/CAM, prótese dentária",
+    `Conheça esta profissão que quase ninguém conhece! 
+
+Diferente do que muitas pessoas pensam, as próteses dentárias não são confeccionadas por dentistas e sim, por protéticos.
+
+A prótese dentária é uma profissão essencial na área da saúde. O profissional trabalha em conjunto com o dentista e é responsável por criar, reparar e personalizar próteses.
+
+A profissão é ideal para quem busca uma carreira promissora e rentável, mesmo sem experiência prévia e sem precisar cursar uma faculdade.
+`,
   generator: 'v0.dev',
   icons: {
     icon: '/images/logo.png',
