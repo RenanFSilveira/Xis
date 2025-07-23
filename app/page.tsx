@@ -74,22 +74,10 @@ export default function Home() {
           </div>
           <nav className="hidden md:flex space-x-6">
             <a
-              href="#detailed-info"
+              href="#full-info-section"
               className="text-white hover:text-white transition-colors bg-orange-500 px-3 py-1 rounded-md hover:bg-orange-600"
             >
-              O curso
-            </a>
-            <a
-              href="#detailed-info"
-              className="text-white hover:text-white transition-colors bg-orange-500 px-3 py-1 rounded-md hover:bg-orange-600"
-            >
-              A profissão
-            </a>
-            <a
-              href="#detailed-info"
-              className="text-white hover:text-white transition-colors bg-orange-500 px-3 py-1 rounded-md hover:bg-orange-600"
-            >
-              A escola
+              Leia tudo sobre a profissão e o curso
             </a>
             <a
               href="#faq"
@@ -104,12 +92,23 @@ export default function Home() {
               Contato
             </a>
           </nav>
+          <div className="flex">
+            {/* Botão para desktop */}
             <a
-                href="#inscreva-se"
-                className="bg-orange-500 text-white px-4 py-1 rounded-md hover:bg-orange-600 transition-colors shadow-md"
-              >
-                Inscreva-se
-              </a>
+              href="#inscreva-se"
+              className="hidden md:block bg-orange-500 text-white px-4 py-1 rounded-md hover:bg-orange-600 transition-colors shadow-md"
+            >
+              Inscreva-se
+            </a>
+
+            {/* Botão para mobile */}
+            <a
+              href="#full-info-section"
+              className="block md:hidden bg-orange-500 text-white px-3 py-1 rounded-md hover:bg-orange-600 transition-colors shadow-md text-sm"
+            >
+              Leia sobre o curso
+            </a>
+          </div>
             </div>
           </header>
       {/* Hero Section - Reestruturada */}
@@ -272,6 +271,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Seção com o texto completo sobre o curso e a profissão */}
+      <FullInfoSection />
+
       {/* FAQ Section */}
       <FAQ />
 
@@ -346,9 +348,6 @@ export default function Home() {
 
       {/* Seção de Informações Detalhadas */}
       <DetailedInfoSection />
-
-      {/* Seção com o texto completo */}
-      <FullInfoSection />
 
       {/* Footer */}
       <footer className="bg-emerald-500 text-white py-12 px-6">

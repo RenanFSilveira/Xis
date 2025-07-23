@@ -1,6 +1,6 @@
 export default function FullInfoSection() {
   return (
-    <section className="py-20 px-6 bg-white">
+    <section id="full-info-section" className="py-20 px-6 bg-white">
       <div className="container mx-auto max-w-4xl">
         <div className="prose prose-lg max-w-none">
           <h2 className="text-3xl font-bold text-gray-800 mb-6">A PROFISSÃO</h2>
