@@ -364,40 +364,11 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div>
-              <h4 className="text-xl font-semibold mb-4">Links Rápidos</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a href="#detailed-info" className="text-white hover:text-orange-100 transition-colors">
-                    O curso
-                  </a>
-                </li>
-                <li>
-                  <a href="#detailed-info" className="text-white hover:text-orange-100 transition-colors">
-                    A profissão
-                  </a>
-                </li>
-                <li>
-                  <a href="#detailed-info" className="text-white hover:text-orange-100 transition-colors">
-                    A escola
-                  </a>
-                </li>
-                <li>
-                  <a href="#faq" className="text-white hover:text-orange-100 transition-colors">
-                    FAQ
-                  </a>
-                </li>
-                <li>
-                  <a href="#inscreva-se" className="text-white hover:text-orange-100 transition-colors">
-                    Contato
-                  </a>
-                </li>
-              </ul>
-            </div>
+
             <div>
               <h4 className="text-xl font-semibold mb-4">Siga-nos</h4>
               <div className="flex space-x-4">
-                <a href="#" className="text-white hover:text-orange-100 transition-colors">
+                <a href="https://www.instagram.com/xisproteseodontologica/" className="text-white hover:text-orange-100 transition-colors">
                   <span className="sr-only">Instagram</span>
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path
@@ -407,22 +378,13 @@ export default function Home() {
                     />
                   </svg>
                 </a>
-                <a href="#" className="text-white hover:text-orange-100 transition-colors">
-                  <span className="sr-only">YouTube</span>
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fillRule="evenodd"
-                      d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
+
               </div>
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-emerald-400 text-center text-emerald-50">
             <p>© {new Date().getFullYear()} Xis - Próteses Odontológicas. Todos os direitos reservados.</p>
-            <p className="mt-2 text-sm">Desenvolvido com ❤️ em Vitória/ES</p>
+
           </div>
         </div>
       </footer>
