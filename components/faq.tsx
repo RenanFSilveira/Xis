@@ -29,7 +29,7 @@ const faqData: FAQItem[] = [
   },
   {
     question: "Quando começa a próxima turma?",
-    answer: "A próxima turma inicia em 04/08/2025. As vagas são limitadas!",
+    answer: "A próxima turma inicia em 18/08/2025. As vagas são limitadas!",
   },
   {
     question: "Onde o curso é realizado?",
