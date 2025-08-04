@@ -283,7 +283,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-4">Garanta sua vaga na próxima turma!</h2>
           <div className="bg-emerald-600 p-6 rounded-lg max-w-md mx-auto mb-8">
             <p className="text-xl font-semibold mb-2">
-              <strong>Início:</strong> 04/08/2025
+              <strong>Início:</strong> 18/08/2025
             </p>
           </div>
           <p className="text-emerald-50 max-w-2xl mx-auto mb-8">
